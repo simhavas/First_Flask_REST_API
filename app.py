@@ -4,6 +4,7 @@ Created on Sat Jan 20 10:11:47 2018
 
 @author: simha
 """
+import os
 
 from flask import Flask
 from flask_restful import Api
@@ -15,7 +16,7 @@ from resources.store import Store,StoreList
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data1.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data1.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "abcdefghijklmn"
 api = Api(app)
